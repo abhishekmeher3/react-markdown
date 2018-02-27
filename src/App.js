@@ -10,8 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputText: '',
-      text: 'tt'
+      inputText: '' 
     };
     this.onControlClicked.bind(this)
   }
@@ -39,7 +38,6 @@ class App extends Component {
         <div className="right">
           <PreviewPane text = {this.state.inputText}/>
         </div>
-        <p> {this.state.text}</p>
       </div>
     );
   }
