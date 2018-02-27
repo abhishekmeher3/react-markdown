@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './WritingPane.css';
 
 class WritingPane extends Component {
+
+    _handleKeyPress = (e) => {
+        
+          console.log(e);
+        
+      }
     render() {
-      return (
-        <div className="WritingPane">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
-        </div>
-      );
+        return (
+            <textarea id="text-input" onKeyPress={this._handleKeyPress}  rows="30" cols="50">Type **Markdown** here.</textarea>
+        );
     }
-  }
-  
-  export default WritingPane;
-  
+}
+
+export default WritingPane;

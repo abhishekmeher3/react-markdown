@@ -26,3 +26,31 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.row{
+  padding: 50pt
+}
+.column {
+  width: 10%;
+  float: left;
+}
+
+.left {
+  width: 45%;
+  float: left;
+}
+
+.right {
+  width: 45%;
+  float: left;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.body{
+  padding: 40px
+}
