@@ -10,8 +10,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputText: ''
+      inputText: '',
+      text: 'tt'
     };
+    this.onControlClicked.bind(this)
   }
 
   onTextChanged (event){
@@ -20,18 +22,24 @@ class App extends Component {
     this.setState(s)
   }
 
+  onControlClicked(type){
+    //console.dir(this.WritingPane)
+    this.WritingPane.performAction(type, this.WritingPane)
+  }
+
   render() {
     return (
       <div className="row">
         <div className="column">
-          <ControlsBar/>
+          <ControlsBar onControlClicked= {this.onControlClicked.bind(this)}/>
         </div>
         <div className="left">
-          <WritingPane onTextChanged= {this.onTextChanged.bind(this)}/>
+          <WritingPane onTextChanged= {this.onTextChanged.bind(this)} ref = {ref=> this.WritingPane = ref} text="aaa" />
         </div>
         <div className="right">
           <PreviewPane text = {this.state.inputText}/>
         </div>
+        <p> {this.state.text}</p>
       </div>
     );
   }

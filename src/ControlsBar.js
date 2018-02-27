@@ -3,14 +3,18 @@ import './ControlsBar.css';
 
 class ControlsBar extends Component {
 
-    _handleKeyPress = (e) => {
-        
-          console.log(e);
-        
-      }
+
+    constructor(props){
+        super(props)
+        this.onControlClicked.bind(this)
+    }
+
+    onControlClicked(type){
+        this.props.onControlClicked(type)
+    }
     render() {
         return (
-            <div> <p>C<br/>O<br/>N<br/>T<br/>R<br/>O<br/>L<br/>S </p></div>
+            <div> <button onClick = {e=> {this.onControlClicked('bold')}}>Bold</button> <p>C<br/>O<br/>N<br/>T<br/>R<br/>O<br/>L<br/>S </p></div>
         );
     }
 }

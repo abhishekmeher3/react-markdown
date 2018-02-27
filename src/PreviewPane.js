@@ -5,7 +5,7 @@ import Remarkable from 'remarkable';
 class PreviewPane extends Component {
 
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.remarkable = new Remarkable('full', {
             html: false,        // Enable HTML tags in source
@@ -28,14 +28,16 @@ class PreviewPane extends Component {
     }
 
 
-    formatMarkDown(text, remarkable){
+    formatMarkDown(text, remarkable) {
         //let markedUpText = remarkable.render(text);
-        return {__html: remarkable.render(text)};
+        return { __html: remarkable.render(text) };
     }
 
     render() {
         return (
-            <div dangerouslySetInnerHTML = {this.formatMarkDown(this.props.text, this.remarkable)}/> 
+            <div style={{ overflow: 'scroll', height: '100vh' }}
+                dangerouslySetInnerHTML={this.formatMarkDown(this.props.text, this.remarkable)}
+            />
         );
     }
 }
