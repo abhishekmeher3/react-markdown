@@ -6,6 +6,20 @@ import PreviewPane from './PreviewPane';
 import ControlsBar from './ControlsBar';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputText: ''
+    };
+  }
+
+  onTextChanged (event){
+    let s = this.state
+    s.inputText = event
+    this.setState(s)
+  }
+
   render() {
     return (
       <div className="row">
@@ -13,10 +27,10 @@ class App extends Component {
           <ControlsBar/>
         </div>
         <div className="left">
-          <WritingPane/>
+          <WritingPane onTextChanged= {this.onTextChanged.bind(this)}/>
         </div>
-        <div className="left">
-          <PreviewPane/>
+        <div className="right">
+          <PreviewPane text = {this.state.inputText}/>
         </div>
       </div>
     );

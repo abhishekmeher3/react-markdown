@@ -3,14 +3,13 @@ import './WritingPane.css';
 
 class WritingPane extends Component {
 
-    _handleKeyPress = (e) => {
-        
-          console.log(e);
-        
-      }
+    onTextChanged(event){
+        this.props.onTextChanged(event.target.value)
+    }
+
     render() {
         return (
-            <textarea id="text-input" onKeyPress={this._handleKeyPress}  rows="30" cols="50">Type **Markdown** here.</textarea>
+            <textarea id="text-input" onChange={this.onTextChanged.bind(this)}  rows="30" cols="50">Type **Markdown** here.</textarea>
         );
     }
 }
