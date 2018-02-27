@@ -24,9 +24,6 @@ class WritingPane extends Component {
         let text = this.state.text;
         let start = text.substring(0, this.selectionInfo.start)
         let end = text.substring(this.selectionInfo.end, text.length)
-        if (this.selectionInfo.end !== this.state.text.length) {
-            
-        }
         let selection = text.substring(this.selectionInfo.start, this.selectionInfo.end)
         selection = selection.replace(new RegExp('\\*\\*','g'), '')
         selection = "**" + selection + "**"
