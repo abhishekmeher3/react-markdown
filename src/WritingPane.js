@@ -40,11 +40,9 @@ class WritingPane extends Component {
 
     render() {
         return (
-            <textarea id="text-input"
+            <textarea class="textinput"
                 onChange={this.onTextChanged.bind(this)}
                 onSelect={this.onSelect.bind(this)}
-                rows="30"
-                cols="50"
                 placeholder="Your markup text here.."
                 value={this.state.text}
                 ref={ref => this.textArea = ref} />

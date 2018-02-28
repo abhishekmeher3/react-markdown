@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import './WritingPane'
+import '../node_modules/bootstrap/dist/css/bootstrap.css'
+import './App.css'
 import WritingPane from './WritingPane';
 import PreviewPane from './PreviewPane';
 import ControlsBar from './ControlsBar';

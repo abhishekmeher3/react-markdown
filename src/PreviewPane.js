@@ -35,7 +35,7 @@ class PreviewPane extends Component {
 
     render() {
         return (
-            <div style={{ overflow: 'scroll', height: '100vh' }}
+            <div class= "preview" 
                 dangerouslySetInnerHTML={this.formatMarkDown(this.props.text, this.remarkable)}
             />
         );

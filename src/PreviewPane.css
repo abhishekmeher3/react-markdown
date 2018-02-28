@@ -1,3 +1,10 @@
-#code {
-    background-color: darkturquoise
+.preview{
+    height: 85vh;
+    width: 100%;
+    background: #f8f8f8;
+    border: 0px solid #a7a7a7;
+    padding: 10pt;
+    font-size: 14pt;
+    overflow: scroll;
+    box-shadow: 0 0 7px rgb(209, 209, 209);
 }

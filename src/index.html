@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body class="body">
+
+    <div class="row">
+        <div class="column">
+            for
+        </div>
+        <div class="left">
+            <textarea id="text-input" oninput="this.editor.update()" rows="30" cols="50">Type **Markdown** here.</textarea>
+        </div>
+        <div class="left">
+            <div id="preview"> </div>
+        </div>
+    </div>
+    <script src="http://jonschlinkert.github.io/remarkable/dist/remarkable.js"></script>
+    <link rel="stylesheet" href="http://jonschlinkert.github.io/remarkable/demo/assets/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.2.0/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/8.4.0/styles/solarized_light.min.css">
+    <script src="https://cdn.jsdelivr.net/highlight.js/8.4.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        var md = new Remarkable('full', {
+            html: false,        // Enable HTML tags in source
+            xhtmlOut: false,        // Use '/' to close single tags (<br />)
+            breaks: false,        // Convert '\n' in paragraphs into <br>
+            langPrefix: 'language-',  // CSS language prefix for fenced blocks
+            linkify: true,         // autoconvert URL-like texts to links
+            linkTarget: '',           // set target to open link in
+
+            // Enable some language-neutral replacements + quotes beautification
+            typographer: false,
+
+            // Double + single quotes replacement pairs, when typographer enabled,
+            // and smartquotes on. Set doubles to '«»' for Russian, '„“' for German.
+            quotes: '“”‘’',
+            _highlight: true,
+            _strict: false,
+            _view: 'html',
+
+            // Highlighter function. Should return escaped HTML,
+            // or '' if input not changed
+            highlight: function (str, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    try {
+                        return hljs.highlight(lang, str).value;
+                    } catch (__) { }
+                }
+
+                try {
+                    return hljs.highlightAuto(str).value;
+                } catch (__) { }
+
+                return ''; // use external default escaping
+            }
+        });
+        function Editor(input, preview) {
+            this.update = function () {
+                preview.innerHTML = md.render(input.value);
+            };
+            input.editor = this;
+            this.update();
+        }
+        var $ = function (id) { return document.getElementById(id); };
+        new Editor($("text-input"), $("preview"));
+    </script>
+</body>
