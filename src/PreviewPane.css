@@ -8,3 +8,9 @@
     overflow: scroll;
     box-shadow: 0 0 7px rgb(209, 209, 209);
 }
+.preview h5,h6{
+    color: teal
+}
+.preview p{
+    color: rgb(94, 94, 94)
+}

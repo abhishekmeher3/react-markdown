@@ -4,6 +4,7 @@ import './App.css'
 import WritingPane from './WritingPane';
 import PreviewPane from './PreviewPane';
 import ControlsBar from './ControlsBar';
+import Toolbar from './Toolbar';
 
 class App extends Component {
 
@@ -28,6 +29,8 @@ class App extends Component {
 
   render() {
     return (
+      <div>
+        <Toolbar/>
       <div className="row">
         <div className="column">
           <ControlsBar onControlClicked= {this.onControlClicked.bind(this)}/>
@@ -38,6 +41,7 @@ class App extends Component {
         <div className="right">
           <PreviewPane text = {this.state.inputText}/>
         </div>
+      </div>
       </div>
     );
   }

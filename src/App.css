@@ -28,7 +28,10 @@
 }
 
 .row{
-  padding: 50pt
+  padding-left: 20pt;
+  padding-right: 20pt;
+  padding-bottom: 50pt;
+  padding-top: 20pt;
 }
 .column {
   width: 10%;
