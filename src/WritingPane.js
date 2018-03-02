@@ -35,6 +35,7 @@ class WritingPane extends Component {
                         this.textArea.setSelectionRange(this.selectionInfo.start + 2, this.selectionInfo.start + 2);
                     }
                 })
+                break;
             }
             case 'italics': {
                 let text = this.state.text;
@@ -50,6 +51,23 @@ class WritingPane extends Component {
                         this.textArea.setSelectionRange(this.selectionInfo.start + 2, this.selectionInfo.start + 2);
                     }
                 })
+                break;
+            }
+            case 'highlight': {
+                let text = this.state.text;
+                let start = text.substring(0, this.selectionInfo.start)
+                let end = text.substring(this.selectionInfo.end, text.length)
+                let selection = text.substring(this.selectionInfo.start, this.selectionInfo.end)
+                selection = selection.replace(new RegExp('==', 'g'), '')
+                selection = "==" + selection + "=="
+                this.props.onTextChanged(start + selection + end)
+                this.setState({ text: start + selection + end }, () => {
+                    if (this.selectionInfo.start === this.selectionInfo.end) {
+                        this.textArea.focus()
+                        this.textArea.setSelectionRange(this.selectionInfo.start + 2, this.selectionInfo.start + 2);
+                    }
+                })
+                break;
             }
         }
     }

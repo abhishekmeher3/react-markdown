@@ -1,19 +1,20 @@
 .control{
     background-color: rgb(238, 238, 238);
     border: 1px solid #ebebeb;
-    padding: 0pt;
     margin-bottom: 5pt;
     margin-right: 5pt;
     display: inline-block;
-    width: 100%;
-    align-self: center;
-    align-content: center;
+    width: 92%;
 }
 
 .controlText{
-    color: gray
+    color: gray;
+    padding-bottom: 0pt;
 }
 
 .controlIcon{
-    font-size: 18pt
+    font-size: 18pt;
+    margin: 10pt;
+    padding-top: 0pt;
+    padding-bottom: 0pt;
 }
