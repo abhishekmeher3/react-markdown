@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ControlsBar.css';
+import ControlButton from './ControlButton';
 
 class ControlsBar extends Component {
 
@@ -15,28 +16,12 @@ class ControlsBar extends Component {
     render() {
         return (
             <div>
-                <button class="control" onClick={e => { this.onControlClicked('bold') }}>
-                    <div>
-                        <b class="controlIcon">B</b>
-                        <br />
-                        <p class="controlText">**bold**</p>
-                    </div>
-                </button>
-                <br />
-                <button class="control" onClick={e => { this.onControlClicked('italics') }}>
-                    <div>
-                        <i class="controlIcon">I</i>
-                        <br />
-                        <p class="controlText">*italics*</p>
-                    </div>
-                </button>
-                <button class="control" onClick={e => { this.onControlClicked('highlight') }}>
-                    <div>
-                        <mark class="controlIcon">hl</mark>
-                        <br />
-                        <p class="controlText">==highlight==</p>
-                    </div>
-                </button>
+                <ControlButton onButtonClicked={this.onControlClicked.bind(this)} action='bold' text='**bold**' icon='<b>B</b>' />
+                <ControlButton onButtonClicked={this.onControlClicked.bind(this)} action='italics' text='*italics*' icon='<i>I</i>' />
+                <ControlButton onButtonClicked={this.onControlClicked.bind(this)} action='highlight' text='==highlight==' icon='<mark>Hl</mark>' />
+                <ControlButton onButtonClicked={this.onControlClicked.bind(this)} action='striked' text='~~strikred~~' icon='<del>abc</del>' />
+                <ControlButton onButtonClicked={this.onControlClicked.bind(this)} action='underline' text='++underline++' icon='<ins>U</ins>' />
+
             </div>
         );
     }

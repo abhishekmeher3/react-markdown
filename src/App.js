@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
+//import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import './App.css'
 import WritingPane from './WritingPane';
 import PreviewPane from './PreviewPane';
@@ -26,11 +26,15 @@ class App extends Component {
     //console.dir(this.WritingPane)
     this.WritingPane.performAction(type, this.WritingPane)
   }
+  printMarkdown(){
+      console.log('print markdown')
+      this.PreviewPane.printMarkdown()
+  }
 
   render() {
     return (
       <div>
-        <Toolbar/>
+        <Toolbar printMarkdown={this.printMarkdown.bind(this)}/>
       <div className="row">
         <div className="column">
           <ControlsBar onControlClicked= {this.onControlClicked.bind(this)}/>
@@ -39,7 +43,7 @@ class App extends Component {
           <WritingPane onTextChanged= {this.onTextChanged.bind(this)} ref = {ref=> this.WritingPane = ref} text="aaa" />
         </div>
         <div className="right">
-          <PreviewPane text = {this.state.inputText}/>
+          <PreviewPane text = {this.state.inputText} ref = {ref=> this.PreviewPane = ref}/>
         </div>
       </div>
       </div>

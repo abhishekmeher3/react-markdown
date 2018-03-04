@@ -69,13 +69,45 @@ class WritingPane extends Component {
                 })
                 break;
             }
+            case 'striked': {
+                let text = this.state.text;
+                let start = text.substring(0, this.selectionInfo.start)
+                let end = text.substring(this.selectionInfo.end, text.length)
+                let selection = text.substring(this.selectionInfo.start, this.selectionInfo.end)
+                selection = selection.replace(new RegExp('~~', 'g'), '')
+                selection = "~~" + selection + "~~"
+                this.props.onTextChanged(start + selection + end)
+                this.setState({ text: start + selection + end }, () => {
+                    if (this.selectionInfo.start === this.selectionInfo.end) {
+                        this.textArea.focus()
+                        this.textArea.setSelectionRange(this.selectionInfo.start + 2, this.selectionInfo.start + 2);
+                    }
+                })
+                break;
+            } 
+            case 'underline': {
+                let text = this.state.text;
+                let start = text.substring(0, this.selectionInfo.start)
+                let end = text.substring(this.selectionInfo.end, text.length)
+                let selection = text.substring(this.selectionInfo.start, this.selectionInfo.end)
+                selection = selection.replace(new RegExp('\\+\\+', 'g'), '')
+                selection = "++" + selection + "+ß+"
+                this.props.onTextChanged(start + selection + end)
+                this.setState({ text: start + selection + end }, () => {
+                    if (this.selectionInfo.start === this.selectionInfo.end) {
+                        this.textArea.focus()
+                        this.textArea.setSelectionRange(this.selectionInfo.start + 2, this.selectionInfo.start + 2);
+                    }
+                })
+                break;
+            }
         }
     }
 
 
     render() {
         return (
-            <textarea class="textinput"
+            <textarea className="textinput"
                 onChange={this.onTextChanged.bind(this)}
                 onSelect={this.onSelect.bind(this)}
                 placeholder="Your markup text here.."

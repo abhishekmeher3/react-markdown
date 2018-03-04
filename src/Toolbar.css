@@ -1,4 +1,13 @@
-.toolbar{
+.toolbar {
     background: blueviolet;
-    height: 60px;
+    height: 60pt;
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    font-size: 18pt;
+    color: white;
+    margin-left: 16pt;
+    margin-bottom: 0pt;
 }

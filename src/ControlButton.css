@@ -1,0 +1,17 @@
+.controlText{
+    color: gray;
+    padding-bottom: 0pt;
+    margin-bottom: 0pt;
+}
+
+.controlIcon{
+    font-size: 16pt;
+    margin-top: 5pt;
+    margin-bottom: 5pt;
+    height: 20pt;
+}
+
+.control{
+    padding: 0pt;
+    margin: 4pt;
+}
