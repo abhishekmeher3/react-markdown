@@ -11,41 +11,41 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputText: '' 
+      inputText: ''
     };
     this.onControlClicked.bind(this)
   }
 
-  onTextChanged (event){
+  onTextChanged(event) {
     let s = this.state
     s.inputText = event
     this.setState(s)
   }
 
-  onControlClicked(type){
+  onControlClicked(type) {
     //console.dir(this.WritingPane)
     this.WritingPane.performAction(type, this.WritingPane)
   }
-  printMarkdown(){
-      console.log('print markdown')
-      this.PreviewPane.printMarkdown()
+  printMarkdown() {
+    console.log('print markdown')
+    this.PreviewPane.printMarkdown()
   }
 
   render() {
     return (
       <div>
-        <Toolbar printMarkdown={this.printMarkdown.bind(this)}/>
-      <div className="row">
-        <div className="column">
-          <ControlsBar onControlClicked= {this.onControlClicked.bind(this)}/>
+        <Toolbar  printMarkdown={this.printMarkdown.bind(this)} />
+        <div className="row">
+          <div className="column">
+            <ControlsBar onControlClicked={this.onControlClicked.bind(this)} />
+          </div>
+          <div className="left">
+            <WritingPane onTextChanged={this.onTextChanged.bind(this)} ref={ref => this.WritingPane = ref} text="aaa" />
+          </div>
+          <div className="right">
+            <PreviewPane text={this.state.inputText} ref={ref => this.PreviewPane = ref} />
+          </div>
         </div>
-        <div className="left">
-          <WritingPane onTextChanged= {this.onTextChanged.bind(this)} ref = {ref=> this.WritingPane = ref} text="aaa" />
-        </div>
-        <div className="right">
-          <PreviewPane text = {this.state.inputText} ref = {ref=> this.PreviewPane = ref}/>
-        </div>
-      </div>
       </div>
     );
   }
