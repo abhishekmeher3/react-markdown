@@ -48,7 +48,7 @@ class PreviewPane extends Component {
             .then(function (html) {
                 console.log(html)
                 html2pdf(html, {
-                    margin: 0.8,
+                    margin: 0.6,
                     filename: 'myfile.pdf',
                     html2canvas: { dpi: 192, letterRendering: true },
                     jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }

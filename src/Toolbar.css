@@ -3,6 +3,7 @@
     height: 60pt;
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
 .title {
@@ -10,4 +11,15 @@
     color: white;
     margin-left: 16pt;
     margin-bottom: 0pt;
+    float: left;
+}
+
+#topdf{
+    font-size: 14pt;
+    color: white;
+    background: rgba(255, 255, 255, 0.103);
+    margin-bottom: 0pt;
+    border: 3px solid #ffffff;
+    align-self: "right|center";
+    float: right;
 }

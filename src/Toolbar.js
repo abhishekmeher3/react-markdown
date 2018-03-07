@@ -13,7 +13,7 @@ class Toolbar extends Component {
     return (
       <div className = 'toolbar'>
         <p className="title">R Markdown</p>
-        <button onClick={this.printMarkdown.bind(this)}>To pdf </button>
+        <button id="topdf" onClick={this.printMarkdown.bind(this)}>To pdf </button>
       </div>
     );
   }
