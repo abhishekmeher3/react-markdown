@@ -3,6 +3,7 @@ import './PreviewPane.css';
 import Remarkable from 'remarkable';
 import inlineCss from 'inline-css'
 import html2pdf from 'html2pdf.js'
+import FileSaver from 'file-saver'
 
 class PreviewPane extends Component {
 
@@ -29,31 +30,69 @@ class PreviewPane extends Component {
         });
     }
 
-    printMarkdown() {
+    printMarkdown(type) {
 
-        var source = this.remarkable.render(this.props.text);
-        var sourceEd =
-            `<html>
-        <head> 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.2.0/css/bootstrap.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/8.4.0/styles/solarized_light.min.css">
-        </head> 
-        <body>
-        ${source}
-        </body>
-        </html>`
+        if (type === 'pdf') {
+            let source = this.remarkable.render(this.props.text);
+            let sourceEd =
+                `<html>
+                    <head> 
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.2.0/css/bootstrap.css">
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/8.4.0/styles/solarized_light.min.css">
+                    </head> 
+                    <body>
+                    ${source}
+                    </body>
+                </html>`
+            let options = {
+                url: 'http://localhost:3000',
+                applyLinkTags: true,
+                extraCss: `h5,h6{color: teal}
+                           p{color: rgb(94, 94, 94)}
+                           img{max-width: 100%;}`
+            }
+            inlineCss(sourceEd, options)
+                .then(function (html) {
+                    console.log(html)
+                    html2pdf(html, {
+                        margin: 0.6,
+                        filename: 'myfile.pdf',
+                        html2canvas: { dpi: 192, letterRendering: true },
+                        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+                    });
+                })
 
-        let options = { url: 'http://localhost:3000', applyLinkTags: true }
-        inlineCss(sourceEd, options)
-            .then(function (html) {
-                console.log(html)
-                html2pdf(html, {
-                    margin: 0.6,
-                    filename: 'myfile.pdf',
-                    html2canvas: { dpi: 192, letterRendering: true },
-                    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-                });
-            })
+        }
+        else if (type === "md") {
+            let blob = new Blob([this.props.text], { type: "text/plain;charset=utf-8" });
+            FileSaver.saveAs(blob, "myfile.md");
+        }
+        else if (type === "html") {
+            let source = this.remarkable.render(this.props.text);
+            let sourceEd =
+                `<html>
+                    <head> 
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.2.0/css/bootstrap.css">
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/8.4.0/styles/solarized_light.min.css">
+                        <style>
+                            h5,h6{
+                                color: teal
+                            }
+                            p{
+                                color: rgb(94, 94, 94)
+                            }
+                            img{
+                                max-width: 100%;
+                            }
+                        </style>
+                    </head> 
+                    <body>
+                    ${source}
+                    </body>
+                </html>`
+            var blob = new Blob([sourceEd], { type: "text/plain;charset=utf-8" });
+            FileSaver.saveAs(blob, "myfile.html");
+        }
 
         console.log("print markdown in preview pane")
     }

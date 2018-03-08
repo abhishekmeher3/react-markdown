@@ -26,9 +26,9 @@ class App extends Component {
     //console.dir(this.WritingPane)
     this.WritingPane.performAction(type, this.WritingPane)
   }
-  printMarkdown() {
+  printMarkdown(type) {
     console.log('print markdown')
-    this.PreviewPane.printMarkdown()
+    this.PreviewPane.printMarkdown(type)
   }
 
   render() {
